@@ -1,0 +1,10 @@
+<p>
+  call-page works!
+</p>
+<h1>{{title}}</h1>
+<div *ngIf="session">
+  <app-publisher [session]="session"></app-publisher>
+  <app-subscriber *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
+</div>
+
+<button (click)="goToWhatever()">Go To Whatever</button>

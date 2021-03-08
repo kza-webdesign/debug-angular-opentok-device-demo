@@ -1,5 +1,5 @@
-import { Component, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
-import { OpentokService } from '../opentok.service';
+import {Component, ElementRef, AfterViewInit, ViewChild, Input, OnDestroy} from '@angular/core';
+import {OpentokService}                                                    from '../opentok.service';
 
 const publish = () => {
 
@@ -11,7 +11,7 @@ const publish = () => {
   styleUrls: ['./publisher.component.css']
 })
 
-export class PublisherComponent implements AfterViewInit {
+export class PublisherComponent implements AfterViewInit, OnDestroy {
   @ViewChild('publisherDiv') publisherDiv: ElementRef;
   @Input() session: OT.Session;
   publisher: OT.Publisher;
@@ -41,6 +41,10 @@ export class PublisherComponent implements AfterViewInit {
         this.publishing = true;
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.publisher.destroy();
   }
 
 }
